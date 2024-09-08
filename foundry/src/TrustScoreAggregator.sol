@@ -13,6 +13,15 @@ contract TrustScoreAggregator {
 
     event TrustScoreUpdated(address indexed user, bytes encryptedScore);
 
+    constructor(Params ) {
+        Params memory initialParams = Params({
+            source: someAddress,          // Could be an on-chain source or a trusted entity
+            data: encryptedTrustScore,    // Some encrypted data representing the initial score
+            time: block.timestamp         // Time of data initialization
+        });
+        TrustScoreAggregator trustAggregator = new TrustScoreAggregator(initialParams);
+    }
+
     function updateTrustScore(bytes memory encryptedScore) public {
         trustScores[msg.sender] = encryptedScore;
         emit TrustScoreUpdated(msg.sender, encryptedScore);
