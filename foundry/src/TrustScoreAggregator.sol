@@ -1,46 +1,48 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.26;
 
-contract TrustScoreAggregator {
+import {Permissioned, Permission} from "fhenix-contracts/access/Permissioned.sol";
 
+contract TrustScoreAggregator is Permissioned {
     mapping(address => bytes) private trustScores;
-
-    struct Permission {
-        address user;
-        uint256 timestamp;
-        bytes signature; 
-    }
 
     event TrustScoreUpdated(address indexed user, bytes encryptedScore);
 
-    constructor(Params ) {
-        Params memory initialParams = Params({
-            source: someAddress,          // Could be an on-chain source or a trusted entity
-            data: encryptedTrustScore,    // Some encrypted data representing the initial score
-            time: block.timestamp         // Time of data initialization
-        });
-        TrustScoreAggregator trustAggregator = new TrustScoreAggregator(initialParams);
+    constructor() Permissioned() {
+        // Initialize the trust score aggregator if necessary
     }
 
-    function updateTrustScore(bytes memory encryptedScore) public {
+    /// @notice Updates the trust score for the message sender
+    /// @param encryptedScore The encrypted trust score data
+    /// @param permission The Permission struct from Permissioned containing the signature and public key for validation
+    function updateTrustScore(bytes memory encryptedScore, Permission memory permission)
+        public
+        onlySender(permission)
+    {
         trustScores[msg.sender] = encryptedScore;
         emit TrustScoreUpdated(msg.sender, encryptedScore);
     }
 
-    function getTrustScore(Permission memory permission) public view returns (bytes memory) {
-        require(isAuthorized(permission), "Not authorized to view this data");
+    /// @notice Retrieves the trust score for the message sender
+    /// @param permission The Permission struct from Permissioned containing the signature and public key for validation
+    function getTrustScore(Permission memory permission)
+        public
+        view
+        onlySender(permission)
+        returns (bytes memory)
+    {
         return trustScores[msg.sender];
     }
 
-    function isAuthorized(Permission memory permission) internal view returns (bool) {
-        return permission.verify();
+    /// @notice Allows an owner to view another user's trust score based on permissions
+    /// @param owner The owner of the trust score being queried
+    /// @param permission The Permission struct from Permissioned containing the signature and public key for validation
+    function getTrustScoreByOwner(Permission memory permission, address owner)
+        public
+        view
+        onlyPermitted(permission, owner)
+        returns (bytes memory)
+    {
+        return trustScores[owner];
     }
-
-    function verify(Permission memory permission) internal pure returns (bool) {
-        // Add verification logic (e.g., signature verification)
-        return (permission.user != address(0) && permission.timestamp < block.timestamp + 1 days);
-    }
-
-
-    
 }

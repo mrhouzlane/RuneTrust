@@ -4,3 +4,6 @@
 [submodule "foundry/lib/fhenix-contracts"]
 	path = foundry/lib/fhenix-contracts
 	url = https://github.com/FhenixProtocol/fhenix-contracts
+[submodule "foundry/lib/openzeppelin-contracts"]
+	path = foundry/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
