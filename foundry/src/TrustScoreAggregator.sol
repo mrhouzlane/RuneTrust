@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.19 <0.9.0;
 
-import { Permissioned, Permission } from "fhenix-contracts/access/Permissioned.sol";
-import { FHERC20 } from "fhenix-contracts/experimental/token/FHERC20/FHERC20.sol";
-import { FHE, euint128} from "fhenix-contracts/FHE.sol"; // Ensure FHE.sol is imported
+import {Permissioned, Permission} from "fhenix-contracts/access/Permissioned.sol";
+import {FHERC20} from "fhenix-contracts/experimental/token/FHERC20/FHERC20.sol";
+import {FHE, euint128} from "fhenix-contracts/FHE.sol"; // Ensure FHE.sol is imported
 
 contract TrustScoreAggregator is Permissioned {
     FHERC20 private token; // The FHERC20 token for managing trust scores
@@ -60,5 +60,12 @@ contract TrustScoreAggregator is Permissioned {
     /// @param permission The Permission struct containing the signature and public key for validation
     function getTrustScore(Permission memory permission) public view onlySender(permission) returns (string memory) {
         return token.balanceOfEncrypted(msg.sender, permission); // Return the user's encrypted balance as their trust score
+    }
+
+    /// @notice Retrieves the encrypted trust score for any user by an authorized entity
+    /// @param owner The owner of the trust score
+    /// @param permission The permission struct to verify authorization
+    function getTrustScoreByOwner(Permission memory permission, address owner) public view onlyPermitted(permission, owner) returns (string memory) {
+        return token.balanceOfEncrypted(owner, permission);
     }
 }
