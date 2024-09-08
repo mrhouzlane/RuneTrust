@@ -63,6 +63,36 @@ RuneTrust is composed of three key components that integrate **Fhenix** contract
    - The relayer ensures that encrypted trust scores from **Fhenix** can be verified and relayed to **Rootstock**, providing a seamless connection between blockchains without exposing sensitive data.
 
 ---
+## Feedback on Rootstock / Fhenix COMPATIBILITY 
+
+Adding old versions on Solidity as 0.6.12 for Roostock for the relayer is possible through this custom usage in foundry.toml
+
+```
+[profile.default]
+src = 'src'
+out = 'out'
+libs = ['lib']
+optimizer = true
+
+[profile.0_6_12]
+# Separate profile for Solidity 0.6.12 with different source and library paths
+src = 'src_rootsock'
+out = 'out'
+libs = ['lib/rif-relay-contracts', 'lib']
+solc_version = '0.6.12'
+
+[rpc_endpoints]
+rootstock = "${ROOTSTOCK_RPC_URL}"
+fhenix = "${FHENIX_RPC_URL}"
+
+[etherscan]
+rootstock = { key = "${ROOTSTOCK_ETHERSCAN_API_KEY}", url = "https://rpc.testnet.rootstock.io/<APIKEY>" }
+fhenix = { key = "${FHENIX_ETHERSCAN_API_KEY}", url = "https://api.fhenix.explorer.io/api" }
+
+[doc]
+title = 'RuneTrust Contracts'
+``` 
+
 
 ## Deployed Contracts:
 
