@@ -31,12 +31,9 @@ contract LendingContract {
     }
 
     // Create a new loan request with terms
-    function createLoanRequest(
-        bytes memory encryptedTrustScore,
-        uint256 amount,
-        uint256 interestRate,
-        uint256 duration
-    ) public {
+    function createLoanRequest(bytes memory encryptedTrustScore, uint256 amount, uint256 interestRate, uint256 duration)
+        public
+    {
         loanRequests[nextLoanId] = LoanRequest({
             borrower: msg.sender,
             amount: amount,

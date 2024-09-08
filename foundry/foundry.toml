@@ -3,4 +3,13 @@ src = "src"
 out = "out"
 libs = ["lib"]
 
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+[rpc_endpoints]
+rootstock = "${ROOTSTOCK_RPC_URL}"
+fhenix = "${FHENIX_RPC_URL}"
+
+[etherscan]
+rootstock = { key = "${ROOTSTOCK_ETHERSCAN_API_KEY}", url = "https://rpc.testnet.rootstock.io/dpX0WV1RJzbWdMUpybG44cYyeDwVXW-T" }
+fhenix = { key = "${FHENIX_ETHERSCAN_API_KEY}", url = "https://api.fhenix.explorer.io/api" }
+
+[doc]
+title = 'RuneTrust Contracts'
