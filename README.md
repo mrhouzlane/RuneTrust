@@ -1,6 +1,8 @@
 # RuneTrust: Confidential Trust Score Aggregator
 
-## New Gen Era of CREDIT SCORES => Social Graphs aggregated to Financial Scores => TRUST Scores 
+### New Gen Era: From Traditional Credit Scores to Holistic Trust Scores
+
+<img src="./docs/Logo.png" alt="Image Description" width="200" />
 
 
 ## TL;DR:
