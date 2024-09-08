@@ -15,6 +15,9 @@ This platform is ideal for decentralized lending, reputation systems, and financ
 
 RuneTrust is composed of three key components that integrate **Fhenix** contracts and **Rootstock** HubRelayer: 
 
+<img src="./docs/graph1.png" alt="RuneTrust Logo" width="200" />
+
+
 ### 1. LendingContract
 - **Purpose**: Facilitates decentralized lending based on encrypted trust scores.
 - **Details**: Borrowers submit loan requests using encrypted trust scores and specify loan terms such as interest rates and durations. Lenders can approve loans after verifying the borrower’s trust score through the **TrustScoreAggregator**. The contract manages loan approval, repayment, and tracks borrower loan histories. Loans are only approved if the borrower’s trust score exceeds a specified threshold.
@@ -31,6 +34,9 @@ RuneTrust is composed of three key components that integrate **Fhenix** contract
 
 ## Solution:
 **RuneTrust** offers a robust solution for decentralized platforms needing verifiable yet private trust metrics. This solution is particularly advantageous for decentralized lending platforms and reputation-based services, where trust is critical for managing risk, and privacy is essential for user adoption.
+
+
+<img src="./docs/graph2.png" alt="RuneTrust Logo" width="200" />
 
 ---
 
