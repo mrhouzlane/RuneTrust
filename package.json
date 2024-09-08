@@ -1,0 +1,16 @@
+{
+  "name": "runetrust",
+  "version": "1.0.0",
+  "description": "## TL;DR: **RuneTrust** is a decentralized trust score aggregator that integrates Fhenix, Rootstock, and Mina blockchains to provide privacy-preserving trust score computation. Utilizing Fully Homomorphic Encryption (FHE), zk-SNARKs, and Ordinals/Runes, RuneTrust enables secure computation of trust scores while protecting user data confidentiality. The platform is aimed at improving decentralized lending, reputation systems, and financial services with verifiable but private trust metrics.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.13.2",
+    "fhenixjs": "^0.4.0-alpha.0"
+  }
+}

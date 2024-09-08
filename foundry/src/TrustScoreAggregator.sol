@@ -1,10 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "fhenixjs/Permission.sol";
-
 contract TrustScoreAggregator {
-    mapping(address => bytes) private trustScores; 
+
+    mapping(address => bytes) private trustScores;
+
+    struct Permission {
+        address user;
+        uint256 timestamp;
+        bytes signature; 
+    }
 
     event TrustScoreUpdated(address indexed user, bytes encryptedScore);
 
@@ -19,6 +24,14 @@ contract TrustScoreAggregator {
     }
 
     function isAuthorized(Permission memory permission) internal view returns (bool) {
-        return Permission.verify(permission);
+        return permission.verify();
     }
+
+    function verify(Permission memory permission) internal pure returns (bool) {
+        // Add verification logic (e.g., signature verification)
+        return (permission.user != address(0) && permission.timestamp < block.timestamp + 1 days);
+    }
+
+
+    
 }
