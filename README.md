@@ -5,48 +5,48 @@
 <img src="./docs/Logo.png" alt="RuneTrust Logo" width="200" />
 
 ## TL;DR:
-**RuneTrust** is a decentralized trust score aggregator built on the **Fhenix** and **Rootstock** blockchains, designed to provide privacy-preserving trust score computations. By leveraging **Fully Homomorphic Encryption (FHE)** and **Ordinals/Runes**, RuneTrust ensures that trust scores are securely computed while safeguarding user data confidentiality.
+**RuneTrust** is a decentralized trust score aggregator built on the **Fhenix** and **Rootstock** blockchains. It is designed to provide privacy-preserving trust score computations, leveraging **Fully Homomorphic Encryption (FHE)** and **Ordinals/Runes** to ensure secure computation of trust scores while safeguarding user data confidentiality.
 
-This platform is ideal for decentralized lending, reputation systems, and financial services, offering verifiable yet private trust metrics to ensure users’ privacy and trustworthiness.
+This platform is ideal for decentralized lending, reputation systems, and financial services, offering verifiable yet private trust metrics to ensure users' privacy and trustworthiness.
 
 ---
 
 ## How It’s Made:
 
-RuneTrust is composed of two key contracts:
+RuneTrust is composed of two key contracts that integrate **Fhenix** contracts:
 
 ### 1. LendingContract
 - **Purpose**: Facilitates decentralized lending based on encrypted trust scores.
-- **Details**: Borrowers can create loan requests by submitting encrypted trust scores, specifying loan terms like interest rates and duration. Lenders can approve loans after verifying trust scores through permissions. The contract manages loan approval, repayment, and tracks borrower loan histories.
+- **Details**: Borrowers submit loan requests using encrypted trust scores and specify loan terms such as interest rates and durations. Lenders can approve loans after verifying the borrower’s trust score through the **TrustScoreAggregator**. The contract manages loan approval, repayment, and tracks borrower loan histories. Loans are only approved if the borrower’s trust score exceeds a specified threshold.
 
 ### 2. TrustScoreAggregator
-- **Purpose**: Aggregates and stores encrypted trust scores.
-- **Details**: Trust scores are encrypted and updated by users. They can only be accessed by authorized parties with the correct permissions. The contract ensures trust scores remain confidential while providing verifications for decentralized applications like lending.
+- **Purpose**: Aggregates, manages, and updates encrypted trust scores using **Fhenix** contracts.
+- **Details**: Trust scores are stored in encrypted form and can only be accessed by authorized parties with the appropriate permissions using **Fhenix's Permissioned** access control. The contract also enables increasing or decreasing trust scores based on user activity (e.g., social or financial actions), using **FHERC20** for trust score token management.
 
 ---
 
 ## Solution:
-**RuneTrust** provides a complete solution for decentralized platforms requiring verifiable yet private trust metrics. This is especially beneficial for decentralized lending platforms and reputation-based services, where trust is key to risk management and privacy is crucial for user adoption.
+**RuneTrust** offers a robust solution for decentralized platforms needing verifiable yet private trust metrics. This solution is particularly advantageous for decentralized lending platforms and reputation-based services, where trust is critical for managing risk, and privacy is essential for user adoption.
 
 ---
 
 ## Recent Updates:
-- **Constructor for Trust Score Aggregator**: The constructor now accepts structured data sources and initial trust data, allowing for smooth integration with on-chain and off-chain data.
-- **Permission System**: A structured `Permission` system grants and verifies access to trust scores using a combination of user signatures and timestamp-based logic.
-- **Encrypted Trust Scores**: All trust scores are stored in encrypted form using Fhenix.js, ensuring that only authorized parties can access or compute on this data.
+- **TrustScoreAggregator Integration**: Integrated with **FHERC20**, allowing encrypted trust scores to be increased or decreased through the issuance or burning of tokens.
+- **Permission System**: Permissions for viewing or updating trust scores are managed via the **Permissioned** contract, with EIP-712 signature-based verification.
+- **Encrypted Trust Scores**: All trust scores are stored and managed in encrypted form using **Fhenix.js**, ensuring privacy while enabling secure computation of trust metrics.
 
 ---
 
 ## Technologies Used:
 
 1. **Fhenix**:
-   - FHE-powered computations for encrypted trust scores.
+   - **Fully Homomorphic Encryption (FHE)**-powered computations for encrypted trust scores.
    - Aggregates encrypted data from multiple trusted sources (e.g., financial behavior, reputation metrics).
-   - Uses `fhenix.js` for encryption, decryption, and computation.
+   - **Fhenix.js** is used for encryption, decryption, and computation, ensuring data privacy.
 
 2. **Rootstock (Ordinals/Runes)**:
    - Smart contracts on Rootstock create verifiable on-chain records of trust-based actions.
-   - Each action is represented as a **Rune**, a non-fungible digital asset that verifies user reputation and trustworthiness.
+   - Each trust-based action is represented as a **Rune**, a non-fungible digital asset that verifies user reputation and trustworthiness. These runes can be used by external services or platforms to verify user activity without compromising data confidentiality.
 
 ---
 
@@ -54,11 +54,19 @@ RuneTrust is composed of two key contracts:
 
 - **Fhenix Testnet**:
   - **Trust Score Aggregator**: Manages FHE-powered computations for secure trust score management.
+  - **FHERC20**: Used for encrypted token-based management of trust scores.
 
 - **Rootstock**:
-  - **LendingContract**: Manages loan requests and approvals based on encrypted trust scores for decentralized lending.
+  - **LendingContract**: Manages decentralized loan requests and approvals based on the borrower’s encrypted trust score from the **TrustScoreAggregator**.
 
 ---
 
 ## Vision:
-RuneTrust aims to become the decentralized standard for trust metrics, enabling privacy-preserving yet verifiable trust scores across multiple blockchain ecosystems. By bridging **Fhenix** and **Rootstock**, RuneTrust is positioned to be a critical tool for decentralized finance (DeFi), reputation systems, and privacy-focused financial services.
+**RuneTrust** seeks to become the decentralized standard for trust metrics, enabling privacy-preserving yet verifiable trust scores across multiple blockchain ecosystems. By integrating **Fhenix** and **Rootstock**, **RuneTrust** provides a critical tool for decentralized finance (DeFi), reputation systems, and privacy-focused financial services.
+
+---
+
+## Recent Integrations:
+- **TrustScore Increases/Decreases**: Encrypted trust scores can be dynamically updated using the **FHERC20** token.
+- **Lending System**: Loans are only approved if the borrower’s trust score meets a specified threshold, ensuring secure and trustworthy lending.
+- **Fhenix** Integration: Encrypted computations are handled via **Fhenix.js** and **FHERC20** tokens, ensuring both privacy and verifiability.
