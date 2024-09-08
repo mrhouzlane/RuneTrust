@@ -13,7 +13,7 @@ This platform is ideal for decentralized lending, reputation systems, and financ
 
 ## How It’s Made:
 
-RuneTrust is composed of three key components that integrate **Fhenix** contracts:
+RuneTrust is composed of three key components that integrate **Fhenix** contracts and **Rootstock** HubRelayer: 
 
 ### 1. LendingContract
 - **Purpose**: Facilitates decentralized lending based on encrypted trust scores.
