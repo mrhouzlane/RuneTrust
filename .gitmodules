@@ -7,3 +7,6 @@
 [submodule "foundry/lib/openzeppelin-contracts"]
 	path = foundry/lib/openzeppelin-contracts
 	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "foundry/lib/rif-relay-contracts"]
+	path = foundry/lib/rif-relay-contracts
+	url = https://github.com/rsksmart/rif-relay-contracts
